@@ -1,27 +1,23 @@
-from fastapi import FastAPI
-
-from app.schemas import Customer
-
-from src.pipeline import predict
+from pydantic import BaseModel
 
 
-app = FastAPI(
-    title="Customer Churn Prediction API",
-    version="1.0"
-)
-
-
-@app.get("/")
-def home():
-
-    return {
-        "message": "Customer Churn Prediction API is Running!"
-    }
-
-
-@app.post("/predict")
-def predict_customer(customer: Customer):
-
-    result = predict(customer.model_dump())
-
-    return result
+class Customer(BaseModel):
+    gender: str
+    SeniorCitizen: int
+    Partner: str
+    Dependents: str
+    tenure: int
+    PhoneService: str
+    MultipleLines: str
+    InternetService: str
+    OnlineSecurity: str
+    OnlineBackup: str
+    DeviceProtection: str
+    TechSupport: str
+    StreamingTV: str
+    StreamingMovies: str
+    Contract: str
+    PaperlessBilling: str
+    PaymentMethod: str
+    MonthlyCharges: float
+    TotalCharges: float
